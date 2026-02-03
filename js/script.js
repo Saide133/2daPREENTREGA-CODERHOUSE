@@ -30,7 +30,7 @@ function crearCard(planta) {
 
   card.innerHTML = `
     <div class="card h-100 text-center">
-      <img src="../assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}">
+      <img src="../assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" || ./assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" >
       <div class="card-body">
         <h5 class="card-title">${planta.nombre}</h5>
         <p class="card-text">USD ${planta.precio}</p>
