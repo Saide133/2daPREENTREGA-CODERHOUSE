@@ -189,7 +189,7 @@ function crearCardDestacados(planta) {
 
   const imagenD = planta.imagen ? planta.imagen : "default.png";
 
-  card.innerHTML = `
+  cardDest.innerHTML = `
     <div class="card h-100 text-center">
       <img src="./assets/imagenes/plantas/${imagenD}" class="card-img-top" alt="${planta.nombre}" || ./assets/imagenes/plantas/${imagenD}" class="card-img-top" alt="${planta.nombre}" >
       <div class="card-body">
