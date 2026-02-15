@@ -182,12 +182,33 @@ function renderizarCarrito() {
   totalContainer.textContent = `Total: USD ${total}`;
 }
 
+//CREAR CARD EN DESTACADOS
+function crearCardDestacados(planta) {
+  const card = document.createElement("div");
+  card.classList.add("col"); 
+
+  const imagen = planta.imagen ? planta.imagen : "default.png";
+
+  card.innerHTML = `
+    <div class="card h-100 text-center">
+      <img src="./assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" || ./assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" >
+      <div class="card-body">
+        <h5 class="card-title">${planta.nombre}</h5>
+        <p class="card-text">USD ${planta.precio}</p>
+        <button class="btn btn-success" data-id="${planta.id}">Agregar al carrito</button>
+      </div>
+    </div>
+  `;
+
+  return card;
+} 
+
 // DESTACADOS INDEX.HTML
 const destacadosContainer = document.getElementById("destacados-container");
 
 if (destacadosContainer) {
   plantas.slice(0, 3).forEach(planta => {
-    destacadosContainer.appendChild(crearCard(planta));
+    destacadosContainer.appendChild(crearCardDestacados(planta));
   });
 }
 

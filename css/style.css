@@ -158,7 +158,6 @@ footer {
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 10px 15px; 
-  box-sizing: border-box;
 }
 .img-carrito {
   width: 80px;
