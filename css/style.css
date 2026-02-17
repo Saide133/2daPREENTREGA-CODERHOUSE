@@ -1,124 +1,49 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* GENERAL */
-body {
-  background-color: #31572C;
-  color: #90A955;
-  font-family: "Zalando Sans Expanded", sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* HEADER */
-header {
-  background-color: #132A13;
-}
-.logo img{
+header .logo img {
   height: 50px;
   width: auto;
 }
-
-/* MENU */
-.custom-navbar {
-  background-color: #132A13;
+header nav {
+  background-color: #3d5130;
+}
+header nav .custom-navbar {
   z-index: 1050;
 }
-.nav-link {
-  color: #90A955 !important;
+header nav .nav-link {
+  color: #efe6ca;
   font-weight: bold;
 }
-.nav-link.active {
+header nav .nav-link.active {
   text-decoration: underline;
+  color: #9a6b45 !important;
 }
 
-
-/* CUERPO */
-main {
-  margin-top: 60px;
-  flex: 1; 
-}
-.textos {
-  height: 250px;
-  text-align: center;
-  padding: 60px 20px;
-}
-.textos h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-.textos p {
-  font-size: 16px;
-}
-
-/* INDEX */
-.destacados {
-  padding: 40px 20px;
-  text-align: center;
-}
-.destacados h2 {
-  margin-bottom: 30px;
-}
-
-/* TIENDA */
-.tienda{
-  text-align: center;
-  padding: 40px 20px;
-}
-
-/* CARRITO */
-.carrito{
-  text-align: center;
-  padding: 40px 20px;
-}
-.contador {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
-}
-.contador button {
-  padding: 5px 10px;
-  font-size: 16px;
-  background-color: #132A13;
-  color: #ECF39E;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-.contador span {
-  font-weight: bold;
-  min-width: 20px;
-  text-align: center;
-}
-
-/* FOOTER */
 footer {
-  background-color: #132A13;
-  color: #ECF39E;
+  background-color: #9a6b45;
+  color: #efe6ca;
   height: 60px;
   width: 100%;
   text-align: center;
   padding-top: 20px;
 }
+@media (max-width: 768px) {
+  footer {
+    padding: 0px 15px;
+  }
+}
 
-/* CARDS */
 .cards-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   flex-wrap: wrap;
   padding: 40px 20px;
+  background-color: #9a6b45;
 }
+
 .product-card {
   width: 250px;
   padding: 20px;
   border-radius: 6px;
-  background-color: #4F772D;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
@@ -126,176 +51,231 @@ footer {
   align-items: center;
   gap: 10px;
 }
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+  }
+}
+
 .card-img {
   width: 100%;
   height: 200px;
-  overflow: hidden; 
+  overflow: hidden;
   border-radius: 6px;
 }
 .card-img img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
+
 .card-img-top {
   width: 100%;
-  height: 400px;        
-  object-fit: cover; 
+  height: 400px;
+  object-fit: cover;
 }
+
 .card-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
-  min-height: 150px;              
+  justify-content: space-between;
+  min-height: 150px;
 }
 .card-body .btn {
-  margin-top: auto; 
+  background-color: #9a6b45;
+  color: #efe6ca;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
 }
+
+#catalogo-container, .cards-carrito {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  background-color: #3d5130;
+}
+
 .carrito-row {
   width: 80%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 15px; 
+  border-bottom: 1px solid #9a6b45;
+  padding: 10px 15px;
 }
+@media (max-width: 768px) {
+  .carrito-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 10px;
+    padding: 12px 0;
+    align-items: center;
+  }
+}
+
 .img-carrito {
   width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 6px;
 }
+@media (max-width: 768px) {
+  .img-carrito {
+    width: 120px;
+    height: 120px;
+    max-height: 250px;
+  }
+}
+
 .nombre-producto {
   font-weight: 500;
-  max-width: 200px; 
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+@media (max-width: 768px) {
+  .nombre-producto {
+    display: block;
+    font-weight: 600;
+    text-align: left;
+  }
+}
+
 .precios-col {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.cantidad {
-  min-width: 40px;
-  text-align: center;
-}
-.subtotal {
-  font-weight: bold;
-  min-width: 120px;
-}
-#total-carrito {
-  font-size: 1.5rem; 
-  font-weight: bold;
-  margin-top: 10px;
-  text-align: right; 
-  width: 85%;
-}
-#vaciar-carrito {
-  margin-bottom: 15px;
-  margin-left: 15px;
-}
-#finalizar-compra {
-  display: block;
-  margin-top: 20px;
-  margin-left: auto; 
-  margin-right: 15px;
-}
-#carrito-container:empty + #total-carrito {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-top: 300px;
-  color: #ccc;
-}
-
-/* AJUSTES */
 @media (max-width: 768px) {
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative
-  }
-  .product-card {
-    width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
-  }
-  .card-img img, .img-carrito {
-    width: 100%;
-    height: auto;
-    max-height: 250px; 
-    object-fit: cover;
-  }
-  .carrito-row {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 10px;
-    padding: 12px 0;
-  }
-  .carrito-row > .d-flex:first-child {
-    align-items: center;
-  }
-  .img-carrito {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 6px;
-  }
-  .nombre-producto {
-    display: block;
-    font-weight: 600;
-    text-align: left;
-  } 
   .precios-col {
-    grid-column: 2 / 3;
+    grid-column: 2/3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    /* align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 10px; */
   }
-  .precio-unitario {
-    display: block;
-    font-size: 0.9rem;
-    opacity: 0.85;
-    text-align: left;
+}
+
+.cantidad {
+  min-width: 40px;
+  text-align: center;
+}
+
+.subtotal {
+  font-weight: bold;
+  min-width: 120px;
+}
+@media (max-width: 768px) {
+  .subtotal {
+    white-space: flex-end;
   }
-  .btn-restar,.btn-sumar {
-    padding: 6px 12px;
-    font-size: 16px;
-  }
-  .cantidad {
-    min-width: 32px;
-    text-align: center;
-  }
+}
+
+#total-carrito {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
+  width: 85%;
+  color: #3d5130;
+}
+
+#vaciar-carrito {
+  background-color: #9a6b45;
+  color: #efe6ca;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#finalizar-compra {
+  background-color: #3d5130;
+  color: #efe6ca;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#carrito-container:empty + #total-carrito {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 300px;
+  color: #9a6b45;
+}
+
+.contador {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  margin: 10px 0;
+}
+.contador button {
+  background-color: #9a6b45;
+  color: #efe6ca;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+  padding: 5px 10px;
+}
+.contador span {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+  color: #9a6b45;
+}
+@media (max-width: 768px) {
   .contador {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-top: 8px;
   }
-  .subtotal {
-    font-weight: bold;
-    white-space: flex-end;
-  }
-
-  header, footer {
-    padding: 0 15px;
-  }
-  .cards-container, .product-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    gap: 20px;
-  }
-  footer, h1, h2 {
-    text-align: center;
-  }
-
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #3d5130;
+  color: #9a6b45;
+  font-family: "Zalando Sans Expanded", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body main {
+  margin-top: 60px;
+  flex: 1;
+  text-align: center;
+  height: 250px;
+  padding: 60px 20px;
+  background-image: url(../assets/imagenes/pattern.jpg);
+  background-repeat: repeat;
+  background-size: 60rem;
+}
+body main h1 {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}
+body main p {
+  font-size: 1rem;
+}
+body main .destacados {
+  padding: 40px 20px;
+}
+body main .destacados h2 {
+  margin-bottom: 3rem;
+  color: #6e931f;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,17 @@
+@mixin boton($bg, $color) {
+  background-color: $bg;
+  color: $color;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+@mixin contenedor($bg, $gap){
+    display: flex;
+    justify-content: center;
+    gap: $gap;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background-color: $bg;
+}

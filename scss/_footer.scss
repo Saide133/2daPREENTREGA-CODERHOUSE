@@ -1,0 +1,12 @@
+footer{
+    background-color: $fourth-color;
+    color: $primary-color;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+
+    @media (max-width: 768px) {
+        padding: 0px 15px;
+    }
+}

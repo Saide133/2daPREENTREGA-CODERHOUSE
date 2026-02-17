@@ -1,0 +1,49 @@
+@use 'mixins';
+
+.cards-container {
+  @include mixins.contenedor($fourth-color, 15px);
+}
+.product-card {
+  width: 250px;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+    }
+}
+.card-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden; 
+  border-radius: 6px;
+  img{
+    object-fit: cover;
+  }
+}
+.card-img-top {
+  width: 100%;
+  height: 400px;        
+  object-fit: cover; 
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  min-height: 150px;
+  .btn{
+    @include mixins.boton($fourth-color, $primary-color);
+  }              
+}
+#catalogo-container, .cards-carrito{
+    @include mixins.contenedor($secondary-color, 0px); 
+}
+
