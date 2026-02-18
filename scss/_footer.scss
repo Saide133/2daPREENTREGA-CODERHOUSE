@@ -1,6 +1,8 @@
+@use 'variables' as v;
+
 footer{
-    background-color: $fourth-color;
-    color: $primary-color;
+    background-color: v.$fourth-color;
+    color: v.$primary-color;
     height: 60px;
     width: 100%;
     text-align: center;

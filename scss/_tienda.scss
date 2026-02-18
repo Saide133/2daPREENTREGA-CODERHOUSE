@@ -1,0 +1,14 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.tienda{
+    h1{
+        margin-bottom: 3rem;
+    }
+    .filtros{                
+        .form-select{
+            @include m.boton(v.$fourth-color, v.$primary-color);
+            margin-bottom: 0.5rem;
+        }
+    }
+}

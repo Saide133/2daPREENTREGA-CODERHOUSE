@@ -50,6 +50,33 @@
     <main>
         <section class="tienda container my-5">
             <h1>Catálogo</h1>
+            
+            <div class="filtros mb-4 d-flex gap-3 flex-wrap">
+                <select id="filtro-dificultad" class="form-select w-auto">
+                    <option value="">Dificultad</option>
+                    <option value="facil">Fácil</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                </select>
+
+                <select id="filtro-size" class="form-select w-auto">
+                    <option value="">Tamaño</option>
+                    <option value="pequeño">Pequeña</option>
+                    <option value="medio">Mediana</option>
+                    <option value="grande">Grande</option>
+                </select>
+
+                <select id="filtro-tipo" class="form-select w-auto">
+                    <option value="">Tipo</option>
+                    <option value="interior">Interior</option>
+                    <option value="decorativa">Decorativa</option>
+                    <option value="suculenta">Suculenta</option>
+                    <option value="cactus">Cactus</option>
+                    <option value="aromatica">Aromática</option>
+                </select>
+                </div>
+
+
             <div id="catalogo-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
             </div>
         </section>

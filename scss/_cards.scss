@@ -1,7 +1,8 @@
-@use 'mixins';
+@use 'mixins' as m;
+@use 'variables' as v;
 
 .cards-container {
-  @include mixins.contenedor($fourth-color, 15px);
+  @include m.contenedor(v.$fourth-color, 15px);
 }
 .product-card {
   width: 250px;
@@ -39,11 +40,12 @@
   flex-direction: column;
   justify-content: space-between; 
   min-height: 150px;
+  color: v.$secondary-color;
   .btn{
-    @include mixins.boton($fourth-color, $primary-color);
+    @include m.boton(v.$fourth-color, v.$primary-color);
   }              
 }
 #catalogo-container, .cards-carrito{
-    @include mixins.contenedor($secondary-color, 0px); 
+    @include m.contenedor(v.$secondary-color, 0px); 
 }
 

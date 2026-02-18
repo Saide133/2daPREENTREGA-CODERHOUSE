@@ -1,9 +1,13 @@
-@import 'variables';
-@import 'mixins';
-@import 'header';
-@import 'footer';
-@import 'cards';
-@import 'carrito';
+@use 'variables' as v;
+@use 'mixins' as m;
+@use 'header' as head;
+@use 'footer' as foot;
+@use 'cards';
+@use 'index';
+@use 'sobreNosotros';
+@use 'tienda';
+@use 'cuidados';
+@use 'carrito' as car;
 
 *{
     margin: 0;
@@ -12,9 +16,9 @@
 }
 
 body{
-    background-color: $secondary-color;
-    color: $fourth-color;
-    font-family: $font;
+    background-color: v.$secondary-color;
+    color: v.$fourth-color;
+    font-family: v.$font;
     min-height: 100vh;
     display: flex;
     flex-direction: column;  
@@ -25,29 +29,19 @@ body{
         text-align: center;
         height: 250px;
         padding: 60px 20px;
-        background-image: $background-image;
+        background-image: v.$background-image;
         background-repeat: repeat;
         background-size: 60rem;
         
         h1{
             font-size: 3rem;
-            margin-bottom: 4rem;
-        }
-        
-        p{
-            font-size: 1rem;
-        }
-        
-        .destacados{
-            padding: 40px 20px;
-            h2{
-                margin-bottom: 3rem;
-                color: $third-color;
-            }
-        }
-    }
-
+            margin-bottom: 2rem;
+            @include m.marcos(v.$primary-color);
+        }     
     
+
+
+    }    
 }
 
 

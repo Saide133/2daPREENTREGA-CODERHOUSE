@@ -5,6 +5,7 @@
   border-radius: 4px;
   cursor: pointer;
   padding: 5px 10px;
+  box-shadow: 0 4px 10px rgb(0, 0, 0, 0.1);
 }
 
 @mixin contenedor($bg, $gap){
@@ -14,4 +15,14 @@
     flex-wrap: wrap;
     padding: 40px 20px;
     background-color: $bg;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgb(0, 0, 0, 0.1);
+}
+
+@mixin marcos($bg){
+  background-color: $bg;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgb(0, 0, 0, 0.1);
+  padding: 10px 30px;
+  margin-bottom: 1rem;
 }

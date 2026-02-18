@@ -1,20 +1,22 @@
+@use 'variables' as v;
+
 header{
         .logo img{
             height: 50px;
             width: auto;
         }
         nav{
-            background-color: $secondary-color;
+            background-color: v.$secondary-color;
             .custom-navbar {
                 z-index: 1050;
             }
             .nav-link {
-            color:  $primary-color;
+            color:  v.$primary-color;
             font-weight: bold;
             }
             .nav-link.active {
             text-decoration: underline;
-            color: $fourth-color !important;
+            color: v.$fourth-color !important;
             }
         }
     }

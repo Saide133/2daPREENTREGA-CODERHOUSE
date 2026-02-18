@@ -1,10 +1,12 @@
-@use "mixins";
+@use 'mixins' as m;
+@use 'variables' as v;
+
 
 .carrito-row {
   width: 80%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid $fourth-color;
+  border-bottom: 1px solid v.$fourth-color;
   padding: 10px 15px;
   
   @media (max-width: 768px) {
@@ -69,20 +71,22 @@
   font-weight: bold;
   margin-top: 10px;
   text-align: right; 
-  width: 85%;
-  color: $secondary-color;
+  width: 100%;
+  color: v.$primary-color;
+  @include m.marcos(v.$secondary-color);
+  padding: 10px 150px;
 }
 #vaciar-carrito {
-    @include mixins.boton($fourth-color, $primary-color);
+    @include m.boton(v.$fourth-color, v.$primary-color);
 }
 #finalizar-compra {
-    @include mixins.boton($secondary-color, $primary-color);
+    @include m.boton(v.$secondary-color, v.$primary-color);
 }
 #carrito-container:empty + #total-carrito {
     text-align: center;
     font-size: 1.2rem;
     margin-top: 300px;
-    color: $fourth-color;
+    @include m.marcos(v.$secondary-color);
 }
 
 .contador {
@@ -91,14 +95,14 @@
   gap: 10px;
   margin: 10px 0;
   button{
-    @include mixins.boton($fourth-color, $primary-color);
+    @include m.boton(v.$fourth-color, v.$primary-color);
     padding: 5px 10px;
   }
   span{
     font-weight: bold;
     min-width: 20px;
     text-align: center;
-    color: $fourth-color;
+    color: v.$fourth-color;
   }
 
   @media (max-width: 768px){

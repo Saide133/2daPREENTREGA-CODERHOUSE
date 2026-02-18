@@ -1,0 +1,11 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.textos{
+    @include m.marcos(v.$fourth-color);
+    color: v.$primary-color;
+}
+.titulo, .leyenda{
+    @include m.marcos(v.$secondary-color);
+    color: v.$primary-color;
+}

@@ -14,33 +14,51 @@ if (carritoStorage) {
 
 // ARRAY OBJETOS
 let plantas = [
-  { id: 1, nombre: "Monstera Deliciosa", precio: 35, imagen: "monstera-deliciosa.jpg" },
-  { id: 2, nombre: "Sansevieria", precio: 25, imagen: "sansevieria.jpg"},
-  { id: 3, nombre: "Pothos", precio: 20, imagen:"pothos.jpg"},
-  { id: 4, nombre: "Aloe Vera", precio: 15, imagen:"aloe-vera.jpg"},
-  { id: 5, nombre: "Lavanda", precio: 18, imagen:"lavanda.jpg"}
+  { id: 1, nombre: "Monstera Deliciosa", precio: 35, imagen: "monstera-deliciosa.jpg", dificultad: "media", size: "grande", luz: "media", agua: "media", tipo: "decorativa"},
+  { id: 2, nombre: "Sansevieria", precio: 25, imagen: "sansevieria.jpg", dificultad: "facil", size: "medio", luz: "baja", agua: "baja", tipo: "interior"},
+  { id: 3, nombre: "Pothos", precio: 20, imagen:"pothos.jpg", dificultad: "facil", size: "medio", luz: "media", agua: "media", tipo: "interior"},
+  { id: 4, nombre: "Aloe Vera", precio: 15, imagen:"aloe-vera.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "suculenta"},
+  { id: 5, nombre: "Lavanda", precio: 18, imagen:"lavanda.jpg", dificultad: "media", size: "medio", luz: "alta", agua: "media", tipo: "aromatica"},
+  { id: 6, nombre: "Ficus Lyrata", precio: 45, imagen:"ficus-lyrata.jpg", dificultad: "alta", size: "grande", luz: "alta", agua: "media", tipo: "decorativa"},
+  { id: 7, nombre: "Calathea Orbifolia", precio: 38, imagen: "calathea-orbifolia.jpg", dificultad: "alta", size: "medio", luz: "baja", agua: "alta", tipo: "interior"},
+  { id: 8, nombre: "Zamioculca", precio: 30, imagen: "zamioculca.jpg", dificultad: "facil", size: "medio", luz: "baja", agua: "baja", tipo: "interior"},
+  { id: 9, nombre: "Philodendron", precio: 28, imagen: "philodendron.jpg", dificultad: "facil", size: "medio", luz: "media", agua: "media", tipo: "interior"},
+  { id: 10, nombre: "Dracaena Marginata", precio: 32, imagen: "dracaena-marginata.jpg", dificultad: "facil", size: "grande", luz: "media", agua: "baja", tipo: "decorativa"},
+  { id: 11, nombre: "Espatifilo", precio: 22, imagen: "espatifilo.jpg", dificultad: "media", size: "medio", luz: "baja", agua: "alta", tipo: "interior"},
+  { id: 12, nombre: "Helecho Boston", precio: 26, imagen: "helecho-boston.jpg", dificultad: "media", size: "medio", luz: "media", agua: "alta", tipo: "interior"},
+  { id: 13, nombre: "Peperomia Obtusifolia", precio: 24, imagen: "peperomia-obtusifolia.jpg", dificultad: "facil", size: "pequeño", luz: "media", agua: "baja", tipo: "decorativa"},
+  { id: 14, nombre: "Cactus de interior", precio: 12, imagen: "cactus.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "cactus"},
+  { id: 15, nombre: "Suculentas Mix", precio: 16, imagen: "suculentas-mix.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "suculenta"}
 ];
 
 // CREAR CARD
 function crearCard(planta) {
   const card = document.createElement("div");
-  card.classList.add("col"); 
+  card.classList.add("col");
 
-  const imagen = planta.imagen ? planta.imagen : "default.png";
+  const imagen = planta.imagen ?? "default.jpg";
 
   card.innerHTML = `
     <div class="card h-100 text-center">
-      <img src="../assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" || ./assets/imagenes/plantas/${imagen}" class="card-img-top" alt="${planta.nombre}" >
+      <img 
+        src="/assets/imagenes/plantas/${imagen}"
+        class="card-img-top"
+        alt="${planta.nombre}"
+        onerror="this.onerror=null; this.src='/assets/imagenes/plantas/default.jpg';"
+      >
       <div class="card-body">
         <h5 class="card-title">${planta.nombre}</h5>
         <p class="card-text">USD ${planta.precio}</p>
-        <button class="btn btn-success" data-id="${planta.id}">Agregar al carrito</button>
+        <button class="btn btn-success" data-id="${planta.id}">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   `;
 
   return card;
 }
+
 
 // AGREGAR AL CARRITO
 function agregarAlCarrito(id) {
@@ -185,30 +203,38 @@ function renderizarCarrito() {
 //CREAR CARD EN DESTACADOS
 function crearCardDestacados(planta) {
   const cardDest = document.createElement("div");
-  cardDest.classList.add("col"); 
+  cardDest.classList.add("col");
 
-  const imagenD = planta.imagen ? planta.imagen : "default.png";
+  const imagenD = planta.imagen ?? "default.jpg";
 
   cardDest.innerHTML = `
     <div class="card h-100 text-center">
-      <img src="./assets/imagenes/plantas/${imagenD}" class="card-img-top" alt="${planta.nombre}" || ./assets/imagenes/plantas/${imagenD}" class="card-img-top" alt="${planta.nombre}" >
+      <img 
+        src="./assets/imagenes/plantas/${imagenD}"
+        class="card-img-top"
+        alt="${planta.nombre}"
+        onerror="this.onerror=null; this.src='./assets/imagenes/plantas/default.jpg';"
+      >
       <div class="card-body">
         <h5 class="card-title">${planta.nombre}</h5>
         <p class="card-text">USD ${planta.precio}</p>
-        <button class="btn btn-success" data-id="${planta.id}">Agregar al carrito</button>
+        <button class="btn btn-success" data-id="${planta.id}">
+          Agregar al carrito
+        </button>
       </div>
     </div>
   `;
-console.log("crea card en destacados");
 
   return cardDest;
-} 
+}
 
 // DESTACADOS INDEX.HTML
 const destacadosContainer = document.getElementById("destacados-container");
 
 if (destacadosContainer) {
-  plantas.slice(0, 3).forEach(planta => {
+  const plantasRandom = [...plantas].sort(() => Math.random () -0.5).slice(0,4);
+
+  plantasRandom.forEach(planta => {
     destacadosContainer.appendChild(crearCardDestacados(planta));
   });
 }
@@ -221,3 +247,39 @@ if (catalogoContainer) {
     catalogoContainer.appendChild(crearCard(planta));
   });
 }
+
+// FILTROS
+function aplicarFiltros() {
+  const dificultad = document.getElementById("filtro-dificultad").value;
+  const size = document.getElementById("filtro-size").value;
+  const tipo = document.getElementById("filtro-tipo").value;
+
+  let plantasFiltradas = plantas.filter(planta => {
+    return (
+      (dificultad === "" || planta.dificultad === dificultad) &&
+      (size === "" || planta.size === size) &&
+      (tipo === "" || planta.tipo === tipo)
+    );
+  });
+
+  renderizarCatalogo(plantasFiltradas);
+}
+function renderizarCatalogo(arrayPlantas) {
+  catalogoContainer.innerHTML = "";
+
+  arrayPlantas.forEach(planta => {
+    catalogoContainer.appendChild(crearCard(planta));
+  });
+}
+
+if(catalogoContainer){
+  renderizarCatalogo(plantas);
+  document.getElementById("filtro-dificultad").addEventListener("change", aplicarFiltros);
+  document.getElementById("filtro-size").addEventListener("change", aplicarFiltros);
+  document.getElementById("filtro-tipo").addEventListener("change", aplicarFiltros);
+}
+
+if (catalogoContainer) {
+  renderizarCatalogo(plantas);
+}
+
