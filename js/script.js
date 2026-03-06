@@ -13,23 +13,34 @@ if (carritoStorage) {
 }
 
 // ARRAY OBJETOS
-let plantas = [
-  { id: 1, nombre: "Monstera Deliciosa", precio: 35, imagen: "monstera-deliciosa.jpg", dificultad: "media", size: "grande", luz: "media", agua: "media", tipo: "decorativa"},
-  { id: 2, nombre: "Sansevieria", precio: 25, imagen: "sansevieria.jpg", dificultad: "facil", size: "medio", luz: "baja", agua: "baja", tipo: "interior"},
-  { id: 3, nombre: "Pothos", precio: 20, imagen:"pothos.jpg", dificultad: "facil", size: "medio", luz: "media", agua: "media", tipo: "interior"},
-  { id: 4, nombre: "Aloe Vera", precio: 15, imagen:"aloe-vera.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "suculenta"},
-  { id: 5, nombre: "Lavanda", precio: 18, imagen:"lavanda.jpg", dificultad: "media", size: "medio", luz: "alta", agua: "media", tipo: "aromatica"},
-  { id: 6, nombre: "Ficus Lyrata", precio: 45, imagen:"ficus-lyrata.jpg", dificultad: "alta", size: "grande", luz: "alta", agua: "media", tipo: "decorativa"},
-  { id: 7, nombre: "Calathea Orbifolia", precio: 38, imagen: "calathea-orbifolia.jpg", dificultad: "alta", size: "medio", luz: "baja", agua: "alta", tipo: "interior"},
-  { id: 8, nombre: "Zamioculca", precio: 30, imagen: "zamioculca.jpg", dificultad: "facil", size: "medio", luz: "baja", agua: "baja", tipo: "interior"},
-  { id: 9, nombre: "Philodendron", precio: 28, imagen: "philodendron.jpg", dificultad: "facil", size: "medio", luz: "media", agua: "media", tipo: "interior"},
-  { id: 10, nombre: "Dracaena Marginata", precio: 32, imagen: "dracaena-marginata.jpg", dificultad: "facil", size: "grande", luz: "media", agua: "baja", tipo: "decorativa"},
-  { id: 11, nombre: "Espatifilo", precio: 22, imagen: "espatifilo.jpg", dificultad: "media", size: "medio", luz: "baja", agua: "alta", tipo: "interior"},
-  { id: 12, nombre: "Helecho Boston", precio: 26, imagen: "helecho-boston.jpg", dificultad: "media", size: "medio", luz: "media", agua: "alta", tipo: "interior"},
-  { id: 13, nombre: "Peperomia Obtusifolia", precio: 24, imagen: "peperomia-obtusifolia.jpg", dificultad: "facil", size: "pequeño", luz: "media", agua: "baja", tipo: "decorativa"},
-  { id: 14, nombre: "Cactus de interior", precio: 12, imagen: "cactus.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "cactus"},
-  { id: 15, nombre: "Suculentas Mix", precio: 16, imagen: "suculentas-mix.jpg", dificultad: "facil", size: "pequeño", luz: "alta", agua: "baja", tipo: "suculenta"}
-];
+let plantas = [];
+
+async function cargarPlantas() {
+
+  try{    
+    if(catalogoContainer){
+      console.log("Cargando plantas...");
+      catalogoContainer.innerHTML = "<p id= 'loader'>Cargando plantas...</p>";
+    }
+    const response = await fetch("../data/plantas.json");
+
+    if(!response.ok){
+      throw new Error("No se pudo cargar el JSON");
+    } 
+
+  plantas = await response.json();
+  console.log("Plantas cargadas:", plantas);
+  renderizarCatalogo(plantas); 
+  renderizarDestacados();
+
+  }catch(error){
+    console.error("Error cargando plantas:", error);
+    if(catalogoContainer){
+      catalogoContainer.innerHTML = "<p id='error'>No se pudo cargar el catálogo</p>";
+    }
+  }  
+}
+
 
 // CREAR CARD
 function crearCard(planta) {
@@ -73,9 +84,18 @@ function agregarAlCarrito(id) {
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
+  
+  Toastify({
+    text: "Producto agregado al carrito 🌿",
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "#6e931f",
+    stopOnFocus: true
+}).showToast();
 }
 
-// BOTONES
+// BOTONES AGREGAR, +, -
 document.addEventListener("click", (e) => {
   const id = parseInt(e.target.dataset.id);
 
@@ -116,9 +136,36 @@ const btnVaciar = document.getElementById("vaciar-carrito");
 
 if (btnVaciar) {
   btnVaciar.addEventListener("click", () => {
-    carrito = [];
-    localStorage.removeItem("carrito");
-    renderizarCarrito();
+    
+    Swal.fire({
+        title: "¿Vaciar carrito?",
+        text: "Se eliminarán todos los productos",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, vaciar",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#6e931f",
+        cancelButtonColor: "#c62828"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+
+            carrito = [];
+
+            localStorage.removeItem("carrito");
+
+            renderCarrito();
+
+            Swal.fire({
+                title: "Carrito vacío",
+                text: "Todos los productos fueron eliminados",
+                icon: "success",
+                confirmButtonColor: "#6e931f"
+            });
+
+        }
+
+    });
   });
 }
 
@@ -129,11 +176,34 @@ document.getElementById("finalizar-compra")?.addEventListener("click", () => {
     0
   );
 
-  alert(`¡Gracias por tu compra! 🌿\nTotal: USD ${total}`);
+  Swal.fire({
+    title: "Confirmar compra",
+    text: `Total a pagar: USD ${total}`,
+    icon: "question",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Pagar",
+    background: "#1f2f2f",
+    color: "#ffffff",
+    cancelButtonColor: "#d33",
+    confirmButtonColor: "#6e931f"    
+  }).then((result) => {
 
-  carrito = [];
-  localStorage.removeItem("carrito");
-  renderizarCarrito();
+    if (result.isConfirmed) {
+
+      Swal.fire({
+        title: "¡Compra realizada!",
+        text: "Gracias por elegir Urban Jungle 🌿",
+        icon: "success",
+        confirmButtonColor: "#6e931f"
+      });
+
+      carrito = [];
+      localStorage.removeItem("carrito");
+      renderizarCarrito();
+
+    }
+  });
 });
 
 renderizarCarrito();
@@ -229,14 +299,17 @@ function crearCardDestacados(planta) {
 }
 
 // DESTACADOS INDEX.HTML
-const destacadosContainer = document.getElementById("destacados-container");
+function renderizarDestacados(){
+  const destacadosContainer = document.getElementById("destacados-container");
 
-if (destacadosContainer) {
-  const plantasRandom = [...plantas].sort(() => Math.random () -0.5).slice(0,4);
+  if (destacadosContainer) {
+    destacadosContainer.innerHTML = "";
+    const plantasRandom = [...plantas].sort(() => Math.random () -0.5).slice(0,4);
 
-  plantasRandom.forEach(planta => {
-    destacadosContainer.appendChild(crearCardDestacados(planta));
-  });
+    plantasRandom.forEach(planta => {
+      destacadosContainer.appendChild(crearCardDestacados(planta));
+    });
+  }
 }
 
 // CATALOGO TIENDA.HTML
@@ -253,6 +326,7 @@ function aplicarFiltros() {
   const dificultad = document.getElementById("filtro-dificultad").value;
   const size = document.getElementById("filtro-size").value;
   const tipo = document.getElementById("filtro-tipo").value;
+  const ordenar = document.getElementById("ordenar").value;
 
   let plantasFiltradas = plantas.filter(planta => {
     return (
@@ -262,9 +336,21 @@ function aplicarFiltros() {
     );
   });
 
-  renderizarCatalogo(plantasFiltradas);
+  let plantasOrdenadas = [...plantasFiltradas];
+
+  if(ordenar === "precioAsc"){
+    plantasOrdenadas.sort((a,b) => a.precio - b.precio);
+  }else if(ordenar === "precioDesc"){
+    plantasOrdenadas.sort((a,b) => b.precio - a.precio);
+  }
+
+  renderizarCatalogo(plantasOrdenadas);
 }
+
 function renderizarCatalogo(arrayPlantas) {
+
+  if(!catalogoContainer) return;
+
   catalogoContainer.innerHTML = "";
 
   arrayPlantas.forEach(planta => {
@@ -277,9 +363,7 @@ if(catalogoContainer){
   document.getElementById("filtro-dificultad").addEventListener("change", aplicarFiltros);
   document.getElementById("filtro-size").addEventListener("change", aplicarFiltros);
   document.getElementById("filtro-tipo").addEventListener("change", aplicarFiltros);
+  document.getElementById("ordenar").addEventListener("change", aplicarFiltros)
 }
 
-if (catalogoContainer) {
-  renderizarCatalogo(plantas);
-}
-
+cargarPlantas();
