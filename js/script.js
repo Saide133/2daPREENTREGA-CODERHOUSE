@@ -28,6 +28,7 @@ async function cargarPlantas() {
       throw new Error("No se pudo cargar el JSON");
     } 
 
+
   plantas = await response.json();
   console.log("Plantas cargadas:", plantas);
   renderizarCatalogo(plantas); 
@@ -47,15 +48,15 @@ function crearCard(planta) {
   const card = document.createElement("div");
   card.classList.add("col");
 
-  const imagen = planta.imagen ?? "default.jpg";
+  //const imagen = planta.imagen ?? "default.jpg";
 
   card.innerHTML = `
     <div class="card h-100 text-center">
       <img 
-        src="/assets/imagenes/plantas/${imagen}"
+        src="../assets/imagenes/plantas/${planta.imagen}"
         class="card-img-top"
         alt="${planta.nombre}"
-        onerror="this.onerror=null; this.src='/assets/imagenes/plantas/default.jpg';"
+        onerror="this.onerror=null; this.src='../assets/imagenes/plantas/default.jpg';"
       >
       <div class="card-body">
         <h5 class="card-title">${planta.nombre}</h5>
@@ -275,12 +276,12 @@ function crearCardDestacados(planta) {
   const cardDest = document.createElement("div");
   cardDest.classList.add("col");
 
-  const imagenD = planta.imagen ?? "default.jpg";
+  //const imagenD = planta.imagen ?? "default.jpg";
 
   cardDest.innerHTML = `
     <div class="card h-100 text-center">
       <img 
-        src="./assets/imagenes/plantas/${imagenD}"
+        src="./assets/imagenes/plantas/${planta.imagen}"
         class="card-img-top"
         alt="${planta.nombre}"
         onerror="this.onerror=null; this.src='./assets/imagenes/plantas/default.jpg';"
@@ -300,9 +301,11 @@ function crearCardDestacados(planta) {
 
 // DESTACADOS INDEX.HTML
 function renderizarDestacados(){
-  const destacadosContainer = document.getElementById("destacados-container");
+const destacadosContainer = document.getElementById("destacados-container");
+
 
   if (destacadosContainer) {
+    console.log("destacadosContainer if")
     destacadosContainer.innerHTML = "";
     const plantasRandom = [...plantas].sort(() => Math.random () -0.5).slice(0,4);
 
