@@ -1,0 +1,47 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+@use 'header' as head;
+@use 'footer' as foot;
+@use 'cards';
+@use 'index';
+@use 'sobreNosotros';
+@use 'tienda';
+@use 'cuidados';
+@use 'carrito' as car;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: v.$secondary-color;
+    color: v.$fourth-color;
+    font-family: v.$font;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;  
+
+    main{
+        margin-top: 60px;
+        flex: 1;
+        text-align: center;
+        height: 250px;
+        padding: 60px 20px;
+        background-image: v.$background-image;
+        background-repeat: repeat;
+        background-size: 60rem;
+        
+        h1{
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            @include m.marcos(v.$primary-color);
+        }     
+    
+
+
+    }    
+}
+
+

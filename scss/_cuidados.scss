@@ -1,0 +1,11 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+#cuidados-container {
+  @include m.contenedor(v.$secondary-color, 15px);
+  margin-top: 3rem;
+  h5{
+    font-size: 2rem;
+  }
+  
+}

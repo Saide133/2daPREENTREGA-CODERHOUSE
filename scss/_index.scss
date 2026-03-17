@@ -1,0 +1,21 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.titulo{
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+.leyenda{
+    font-size: 1.5rem;
+    margin-bottom: 3.5rem;
+    @include m.marcos(v.$primary-color);
+} 
+
+.destacados{
+    padding: 40px 20px;
+    h2{
+        margin-bottom: 3rem;
+        color: v.$primary-color;
+        @include m.marcos(v.$fourth-color);
+    }
+}
